@@ -1,13 +1,9 @@
-$(function(){
-  alert("Everything is ready, let's do this");
-});
-
 function newGame(){
   window.location.reload();
 }
 
 
-function createGrid(){
+function createGrid(board){
   var tbl = document.createElement("table");
   var tblBody = document.createElement("tbody");
 
@@ -17,8 +13,10 @@ function createGrid(){
       var col = document.createElement("td");
       row.appendChild(col);
     }
-
-
+    tblBody.appendChild(row);
   }
-
+  tbl.appendChild(tblBody);
+  board.appendChild(tbl);
 }
+createGrid(document.getElementById("board1"));
+createGrid(document.getElementById("board2"))
