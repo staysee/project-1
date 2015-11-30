@@ -1,0 +1,19 @@
+body{
+  font-family: helvetica;
+}
+
+h1, p{
+  text-align: center;
+}
+
+#message{
+
+}
+
+.gameArea{
+  display: flex;
+}
+
+ul{
+  list-style: none;
+}
