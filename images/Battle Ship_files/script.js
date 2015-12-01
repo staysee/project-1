@@ -21,7 +21,6 @@ function createGrid(board){
       var col = document.createElement('td');
       col.setAttribute('id', id);
       col.setAttribute('class', 'box');
-      setupMouseEvent(col, prefix, letters, i, j);
       row.appendChild(col);
     }
     tblBody.appendChild(row);
@@ -47,23 +46,8 @@ function getPlayerName(player){
 //getPlayerName('name1');
 //getPlayerName('name2');
 
+//
 
-function setupMouseEvent(col, prefix, letters, rowId, columnId){
-  col.onmouseover = function(){
-    for(var i = 1; i < 4; i++){
-      var id  = prefix + letters[columnId] + (rowId + i + 1);
-      document.getElementById(id).style.backgroundColor = "white";
-    }
-    col.style.backgroundColor = "white";
-  };
-  col.onmouseout = function(){
-    for(var i = 1; i < 4; i++){
-      var id  = prefix + letters[columnId] + (rowId + i + 1);
-      document.getElementById(id).style.backgroundColor = "transparent";
-    }
-    col.style.backgroundColor = "transparent";
-  };
-}
 
 
 

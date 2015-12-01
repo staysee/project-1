@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///Users/staceysugiono/code/lucky7s/battleship_proj1/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Battle Ship</title>
+  <!--Style Sheet-->
+  <link href="./Battle Ship_files/css" rel="stylesheet" type="text/css">
+  <link href="./Battle Ship_files/css(1)" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="./Battle Ship_files/style.css">
+  <script src="./Battle Ship_files/jquery.min.js"></script>
+</head>
+
+
+<body>
+<main>
+  <h1>Battleship</h1>
+  <p>Prepare your ships for battle!</p>
+
+<!--Message area for Player's Turn & Ships Sunk-->
+  <div id="message">Messages Go Here</div>
+
+<!--Holds the two grids for Two Players-->
+  <div id="gameArea">
+
+    <!--This area is for Player 1 section-->
+    <div id="wrapper-1" class="player-container">
+      <div id="name1" class="playerName">Player 1</div>
+      <div id="board1" class="gameboard"></div>
+      <!--Create a section for list of ships and their sizes-->
+      <div id="ship1" class="ships">List of Ships
+        <ul>
+          <li>Battleship -- 4</li>
+          <li>Submarine -- 3</li>
+          <li>Destroyer -- 3</li>
+          <li>Patrol Boat -- 2</li>
+        </ul>
+      </div>
+    </div>
+
+<!--This area is for Player 2 section-->
+    <div id="wrapper-2" class="player-container">
+      <div id="name2" class="playerName">Player 2</div>
+      <div id="board2" class="gameboard"></div>
+      <div id="ship2" class="ships">List of Ships
+        <ul>
+          <li>Battleship -- 4</li>
+          <li>Submarine -- 3</li>
+          <li>Destroyer -- 3</li>
+          <li>Patrol Boat -- 2</li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="reset">
+    <button type="reset" value="reset">New Game</button>
+  </div>
+
+  <div id="rules">Rules</div>
+</main>
+
+
+
+  <script type="text/javascript" src="./Battle Ship_files/script.js"></script>
+
+
+</body></html>
