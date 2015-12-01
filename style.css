@@ -1,34 +1,55 @@
 body{
+  background-image: url('images/background1.jpg');
+  background-size: cover;
   font-family: helvetica;
+ /* width: 1000px;  /* Stops page from moving when screen size moved*/
+}
+
+main{
+  width: 900px;
+  margin: 0 auto;
 }
 
 h1, p{
   text-align: center;
 }
 
-#message{
-
+#message, .reset, #rules{
+  text-align: center;
 }
+
 
 #gameArea{
   display: flex;
+}
+
+#wrapper-1{
+  margin-left: 100px;
+}
+
+.player-container{
+  width: 50%;
+}
+
+.playerName{
+  color: white;
+  font-size: 18px;
 }
 
 ul{
   list-style: none;
 }
 
-tabl
+/*Styles the Game Grids*/
 tr{
   height: 30px;
   width: 80px;
   padding: 0px;
 }
-
 td{
   height: 30px;
   width: 30px;
   padding: 0px;
-  border: 1px solid black;
+  border: 1px solid #00FF33;
   border-spacing: 0;
 }
