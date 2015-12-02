@@ -53,9 +53,9 @@ td{
   cursor: crosshair;
 }
 
-/*td:hover{
+td:hover{
   background-color: rgba(255, 255, 255, 0.5);
-}*/
+}
 
 
 #wrapper-1{
@@ -86,3 +86,14 @@ ul{
 }
 
 
+.hit{
+  background-color: #FF4D4D;
+}
+
+.miss{
+  background-color: #B3E0FF;
+}
+
+.occupied {
+  background-color: green;
+}
