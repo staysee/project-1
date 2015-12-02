@@ -103,24 +103,47 @@ function setBoard(shipArray) {
   }
 }
 
+
+var hits = 0;
+var isSunk = false;
+
+
+
 function checkOccupied (id){
   var classList = $('#'+id).attr('class').split(/\s+/);
-  if (classList[1] === 'occupied') {
-      console.log('hit!')
-      document.getElementById(id).style.backgroundColor = "red";
-      view.displayMessage("You hit my ship!");
-    } else {
-      console.log('miss!')
-      document.getElementById(id).style.backgroundColor = "white";
-      view.displayMessage("You missed!")
+  if (classList[1] == 'occupied'){
+      if((event.target.style.backgroundColor !== "red") && (hits == 16)){
+        document.getElementById(id).style.backgroundColor = "red";
+        hits += 1;
+        view.displayMessage("Congratulations! You've sunk all your enemy ships!")
+      } else if (event.target.style.backgroundColor != "red"){
+        document.getElementById(id).style.backgroundColor = "red"
+        hits += 1;
+        view.displayMessage("You hit my ship!");
+      } else{
+        view.displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
+      }
+  } else{
+        console.log('miss!');
+        document.getElementById(id).style.backgroundColor = "#374A9D";
+        view.displayMessage("You missed!");
       }
 }
+
+
+
+
 
 //Hide or Show ships
 $('.toggle').click(function(){
   $('.occupied').css('background','transparent');
   $(this).hide();
 });
+
+
+
+
+
 
 // // ------SHIP PLACEMENT--------//
 // function setupMouseEvent(col, prefix, letters, rowId, columnId){

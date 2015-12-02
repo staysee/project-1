@@ -34,6 +34,12 @@ p{
   margin-top: 30px;
 }
 
+#message{
+  font-family: 'Bangers';
+  font-size: 15px;
+  color: red;
+}
+
 #gameArea{
   display: flex;
 }
