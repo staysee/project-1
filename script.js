@@ -33,11 +33,12 @@ var view = {
 /*checks if above functions are working
 view.displayHit("P1A1");
 view.displayMiss("P1C3");
-view.displayMessage("Hello there")*/
+view.displayMessage("Hello there")
 
 
 /*****Set Ships to P1 & P2 Board*****/
 var p1ships = [
+  ["P1F8","P1G8","P1H8","P1I8","P1J8"],
   ["P1A1","P1A2","P1A3","P1A4"],
   ["P1C3","P1D3","P1E3"],
   ["P1H4","P1H5","P1H6"],
@@ -45,6 +46,7 @@ var p1ships = [
 ];
 
 var p2ships = [
+  ["P2J5","P2J6","P2J7","P2J8","P2J9"],
   ["P2D3","P2E3","P2F3","P2G3"],
   ["P2B6","P2B7","P2B8"],
   ["P2G7","P2G8","P2G9"],
@@ -74,9 +76,9 @@ function createGrid(board){
       col.setAttribute('id', id); //make new ID for each box
       col.setAttribute('class', 'box'); //make class for each box
       //setupMouseEvent(col, prefix, letters, i, j);
-      //col.addEventListener('click', function () {
-       // clickHandler(event.target);
-      //});
+      col.addEventListener('click', function () {
+        clickHandler(event.target);
+      });
       row.appendChild(col);
     }
     tblBody.appendChild(row);
@@ -101,8 +103,24 @@ function setBoard(shipArray) {
   }
 }
 
+function checkOccupied (id){
+  var classList = $('#'+id).attr('class').split(/\s+/);
+  if (classList[1] === 'occupied') {
+      console.log('hit!')
+      document.getElementById(id).style.backgroundColor = "red";
+      view.displayMessage("You hit my ship!");
+    } else {
+      console.log('miss!')
+      document.getElementById(id).style.backgroundColor = "white";
+      view.displayMessage("You missed!")
+      }
+}
 
-
+//Hide or Show ships
+$('.toggle').click(function(){
+  $('.occupied').css('background','transparent');
+  $(this).hide();
+});
 
 // // ------SHIP PLACEMENT--------//
 // function setupMouseEvent(col, prefix, letters, rowId, columnId){
@@ -142,22 +160,16 @@ function setBoard(shipArray) {
 
 
 
-// function clickHandler (col) {
-//   console.log(col)
-//   var id = col.id;
-//   id = id.slice(1)
-//   var player = id.slice(0, 1)
-//   var letter = id.slice(1, 2)
-//   var number = id.slice(2, 3)
-//   console.log(player, letter, number)
-//   if (true) {
-//     placeShip(col, player, letter, number)
-//   }
-//   // if (someBool) {
-//   //   placeShip
-//   // }
-//   // console.log(col);
-// }
+function clickHandler (col) {
+  console.log(col)
+  var id = col.id;
+  id = id.slice(1)
+  var player = id.slice(0, 1)
+  var letter = id.slice(1, 2)
+  var number = id.slice(2, 3)
+  console.log(player, letter, number)
+  checkOccupied(col.id)
+}
 
 
 
