@@ -2,6 +2,15 @@ function newGame(){
   window.location.reload();
 }
 
+var soundID = "thunder";
+function loadSound(){
+  createjs.Sound.registerSound("thunder.mp3", soundID);
+}
+function playSound(){
+  createjs.Sound.play(soundID);
+}
+
+
 /*****Get Player Names*****/
 function getPlayerName(player){
   var name = prompt("Please enter your player name: ");
@@ -113,11 +122,15 @@ function checkOccupied (id){
   var classList = $('#'+id).attr('class').split(/\s+/);
   if (classList[1] == 'occupied'){
       if((event.target.style.backgroundColor !== "red") && (hits == 16)){
-        document.getElementById(id).style.backgroundColor = "red";
+        document.getElementById(id).style.backgroundColor = "#932020";
+        document.getElementById(id).style.backgroundImage = "url(images/fire.png)"
+        playSound("thunder");
         hits += 1;
         view.displayMessage("Congratulations! You've sunk all your enemy ships!")
       } else if (event.target.style.backgroundColor != "red"){
-        document.getElementById(id).style.backgroundColor = "red"
+        document.getElementById(id).style.backgroundColor = "#932020";
+        document.getElementById(id).style.backgroundImage = "url(images/fire.png)"
+        playSound("thunder");
         hits += 1;
         view.displayMessage("You hit my ship!");
       } else{
@@ -125,7 +138,7 @@ function checkOccupied (id){
       }
   } else{
         console.log('miss!');
-        document.getElementById(id).style.backgroundColor = "#374A9D";
+        document.getElementById(id).style.backgroundImage = "url(images/water.png)";
         view.displayMessage("You missed!");
       }
 }
