@@ -91,15 +91,3 @@ ul{
   list-style: none;
 }
 
-
-.hit{
-  background-color: #FF4D4D;
-}
-
-.miss{
-  background-color: #B3E0FF;
-}
-
-.occupied {
-  background-color: green;
-}

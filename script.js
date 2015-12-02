@@ -20,8 +20,8 @@ function getPlayerName(player){
     getPlayerName(player);
   }
 }
-//getPlayerName('name1');
-//getPlayerName('name2');
+// getPlayerName('name1');
+// getPlayerName('name2');
 
 
 /*****Show messages*****/
@@ -61,6 +61,7 @@ var p2ships = [
   ["P2G7","P2G8","P2G9"],
   ["P2I1","P2J1"]
 ];
+
 
 
 /****Creates both players' grid****/
@@ -119,20 +120,22 @@ var isSunk = false;
 
 
 function checkOccupied (id){
+
   var classList = $('#'+id).attr('class').split(/\s+/);
   if (classList[1] == 'occupied'){
-      if((event.target.style.backgroundColor !== "red") && (hits == 16)){
+      console.log(event);
+      if((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hits == 16)){
         document.getElementById(id).style.backgroundColor = "#932020";
-        document.getElementById(id).style.backgroundImage = "url(images/fire.png)"
-        playSound("thunder");
+        document.getElementById(id).style.backgroundImage = "url(images/fire.png)";
         hits += 1;
-        view.displayMessage("Congratulations! You've sunk all your enemy ships!")
-      } else if (event.target.style.backgroundColor != "red"){
-        document.getElementById(id).style.backgroundColor = "#932020";
-        document.getElementById(id).style.backgroundImage = "url(images/fire.png)"
+        view.displayMessage("Congratulations! You've sunk all your enemy ships!");
         playSound("thunder");
+      } else if (event.target.style.backgroundColor != "rgb(147, 32, 32)"){
+        document.getElementById(id).style.backgroundColor = "#932020";
+        document.getElementById(id).style.backgroundImage = "url(images/fire.png)";
         hits += 1;
         view.displayMessage("You hit my ship!");
+        playSound("thunder");
       } else{
         view.displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
       }
@@ -142,8 +145,6 @@ function checkOccupied (id){
         view.displayMessage("You missed!");
       }
 }
-
-
 
 
 
@@ -203,7 +204,7 @@ function clickHandler (col) {
   var player = id.slice(0, 1)
   var letter = id.slice(1, 2)
   var number = id.slice(2, 3)
-  console.log(player, letter, number)
+  console.log(player, letter, number, col.id)
   checkOccupied(col.id)
 }
 
