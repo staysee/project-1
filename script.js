@@ -43,8 +43,6 @@ var view = {
 view.displayHit("P1A1");
 view.displayMiss("P1C3");
 view.displayMessage("Hello there")
-
-
 /*****Set Ships to P1 & P2 Board*****/
 var p1ships = [
   ["P1F8","P1G8","P1H8","P1I8","P1J8"],
@@ -161,6 +159,19 @@ function checkOccupied (id){
 
 
 
+//Rules Box//
+  $('#rulebutton').click(function(){
+    $('#overlay').fadeIn('fast',function(){
+      $('#rulebox').animate({'top':'160px'},500);
+    });
+  });
+  $('#ruleclose').click(function(){
+    $('#rulebox').animate({'top':'-200px'},500,function(){
+      $('#overlay').fadeOut('fast');
+    });
+  });
+
+
 
 
 // //Hide or Show ships
@@ -220,11 +231,3 @@ function clickHandler (col) {
   console.log(player, letter, number, col.id)
   checkOccupied(col.id)
 }
-
-
-
-
-
-
-
-

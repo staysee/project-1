@@ -25,7 +25,7 @@ p{
   color: #004C4D;
 }
 
-#message, .reset, #rules{
+#message, .reset, .rulebutton{
   text-align: center;
 }
 
@@ -97,8 +97,8 @@ td:hover{
 }
 
 
-/* New Game Button */
-.reset {
+/* New Game  & Rules Button */
+.reset, .rulebutton {
   background-color: #599bb3;
   border-radius: 15px;
   border: 2px solid #29528f;
@@ -111,11 +111,65 @@ td:hover{
   margin: 0px 390px;
   width: 80px;
 }
-.reset:hover {
+.reset:hover, .rulebutton:hover{
   background-color: #1ba880;
 }
-.reset:active {
+.reset:active, .rulebutton:active {
   position: relative;
   top: 1px;
 }
 
+/*Rules Overlay Box*/
+.overlay{
+  display: none;
+  background: transparent url('images/overlay.png') repeat top left;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+}
+
+.rulebox{
+  position: fixed;
+  left: 30%;
+  right: 30%;
+  background-color: #fff;
+  color: #7F7F7F;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  z-index: 101;
+}
+
+a.ruleclose{
+  float: right;
+  width: 26px;
+  height: 26px;
+  background: url('images/cancel.png');
+  margin-top: -30px;
+  margin-right: -30px;
+  cursor: pointer;
+}
+
+.rulebox h3{
+  font-family: 'Finger Paint';
+  border-bottom: 1px dashed #FFFFFF;
+  border-radius: 10px;
+  margin: -20px -20px 0px -20px;
+  padding: 10px;
+  background-color: #13B161;
+  color: #FFFFFF;
+}
+
+.rulebox h5{
+  font-family: 'Finger Paint';
+  margin: 8px 0px 5px 0px;
+}
+
+.rulebox li{
+  font-family: Trebuchet MS;
+  font-size: 14px;
+  color: #004C4D;
+
+}
