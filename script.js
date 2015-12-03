@@ -118,10 +118,10 @@ function setBoard(shipArray) {
 var hitsOne = 0;
 var hitsTwo = 0;
 
-function checkOccupied (id, grid){
+function checkOccupied (id){
   var classList = $('#'+id).attr('class').split(/\s+/);
-  var playerOne = $('#P1'+grid);
-  var playerTwo = $('#P2'+grid);
+  var playerOne = id.slice(0,2);
+
 
   if (classList[1] == 'occupied'){
       console.log(event);
@@ -131,7 +131,7 @@ function checkOccupied (id, grid){
         document.getElementById(id).style.backgroundImage = "url(images/fire.png)";
         playSound("thunder");
 
-          if(playerOne){
+          if(playerOne === 'P1'){
             hitsOne += 1;
             view.displayMessage("Congratulations! Player 1 WINS!");
           } else {
@@ -142,7 +142,7 @@ function checkOccupied (id, grid){
         document.getElementById(id).style.backgroundColor = "#932020";
         document.getElementById(id).style.backgroundImage = "url(images/fire.png)";
         playSound("thunder");
-          if(playerOne){
+          if(playerOne === 'P1'){
             hitsOne += 1;
             view.displayMessage("You hit my ship!");
           } else{
