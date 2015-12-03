@@ -114,28 +114,41 @@ function setBoard(shipArray) {
 }
 
 
-var hits = 0;
-var isSunk = false;
+//var hits = 0;
+var hitsOne = 0;
+var hitsTwo = 0;
 
-
-
-function checkOccupied (id){
-
+function checkOccupied (id, grid){
   var classList = $('#'+id).attr('class').split(/\s+/);
+  var playerOne = $('#P1'+grid);
+  var playerTwo = $('#P2'+grid);
+
   if (classList[1] == 'occupied'){
       console.log(event);
-      if((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hits == 16)){
+      if(((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hitsOne == 16)) || ((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hitsTwo == 16))){
+
         document.getElementById(id).style.backgroundColor = "#932020";
         document.getElementById(id).style.backgroundImage = "url(images/fire.png)";
-        hits += 1;
-        view.displayMessage("Congratulations! You've sunk all your enemy ships!");
         playSound("thunder");
+
+          if(playerOne){
+            hitsOne += 1;
+            view.displayMessage("Congratulations! Player 1 WINS!");
+          } else {
+            hitsTwo += 1;
+            view.displayMessage("Congratulations! Player 2 WINS!");
+          }
       } else if (event.target.style.backgroundColor != "rgb(147, 32, 32)"){
         document.getElementById(id).style.backgroundColor = "#932020";
         document.getElementById(id).style.backgroundImage = "url(images/fire.png)";
-        hits += 1;
-        view.displayMessage("You hit my ship!");
         playSound("thunder");
+          if(playerOne){
+            hitsOne += 1;
+            view.displayMessage("You hit my ship!");
+          } else{
+            hitsTwo += 1;
+            view.displayMessage("You hit my ship!");
+          }
       } else{
         view.displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
       }
@@ -148,13 +161,13 @@ function checkOccupied (id){
 
 
 
-//Hide or Show ships
-$('.toggle').click(function(){
-  $('.occupied').css('background','transparent');
-  $(this).hide();
-});
 
 
+// //Hide or Show ships
+// $('.toggle').click(function(){
+//   $('.occupied').css('background','transparent');
+//   $(this).hide();
+// });
 
 
 
