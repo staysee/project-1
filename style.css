@@ -1,7 +1,6 @@
 body{
   background-image: url('images/background1.jpg');
   background-size: cover;
-  font-family: helvetica;
  /* width: 1000px;  /* Stops page from moving when screen size moved*/
 }
 
@@ -18,7 +17,7 @@ h1, p{
 h1{
   color: #000080;
   font-family: 'Bangers', cursive;
-  font-size: 80px;
+  font-size: 110px;
 }
 p{
   font-family: 'Finger Paint', cursive;
@@ -37,7 +36,11 @@ p{
 #message{
   font-family: 'Bangers';
   font-size: 30px;
-  color: red;
+  color: #B00027;
+}
+
+.playerName{
+  font-family: 'Finger Paint';
 }
 
 #gameArea{
@@ -45,6 +48,10 @@ p{
 }
 
 /*Styles the Game Grids*/
+table{
+  border: 5px inset #00FF33;
+  border-radius: 5px;
+}
 tr{
   height: 30px;
   width: 80px;
@@ -78,16 +85,37 @@ td:hover{
 }
 
 
-/* Style the ship lists */
+/* Ship List */
 .ships{
   color: white;
+  margin-right: 50px;
+  color: gray;
 }
-
-li{
+.ships p{
   color: yellow;
-
+  font-size: 14px;
 }
-ul{
-  list-style: none;
+
+
+/* New Game Button */
+.reset {
+  background-color: #599bb3;
+  border-radius: 15px;
+  border: 2px solid #29528f;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Trebuchet MS;
+  font-size: 14px;
+  padding: 12px 21px;
+  margin: 0px 390px;
+  width: 80px;
+}
+.reset:hover {
+  background-color: #1ba880;
+}
+.reset:active {
+  position: relative;
+  top: 1px;
 }
 
