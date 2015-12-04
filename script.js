@@ -13,19 +13,6 @@ function playSound(){
 }
 
 
-/** GET PLAYER NAMES **/
-function getPlayerName(player){
-  var name = prompt("Please enter your player name: ");
-  if (name){
-    $('#'+player).html("Player: " + name);
-  } else {
-    getPlayerName(player);
-  }
-}
-//getPlayerName('name1');
-//getPlayerName('name2');
-
-
 /** DISPLAY GAME MESSAGES **/
 function displayMessage(msg){
   var messageArea = $('#message');
@@ -33,42 +20,21 @@ function displayMessage(msg){
 }
 
 
-// var view = {
-//   displayMessage: function (msg){
-//     var messageArea = document.getElementById("message");
-//     messageArea.innerHTML = msg;
-//   },
-//   displayHit: function(location){
-//     var cell = document.getElementById(location);
-//     cell.setAttribute("class", "hit");
-//   },
-//   displayMiss: function(location){
-//     var cell = document.getElementById(location);
-//     cell.setAttribute("class", "miss");
-//   }
-// }
-/*checks if above functions are working
-view.displayHit("P1A1");
-view.displayMiss("P1C3");
-view.displayMessage("Hello there")
 /*****Set Ships to P1 & P2 Board*****/
-
 
 /* constructor function */
 function Ship(name, playerOwner){
   this.name = name;
   this.spaces = [];
   this.playerOwner = playerOwner;
-  this.hitSpaces =[];
-  this.gotHit = function (space) {
-
-    if (spaces === hitSpaces.length) {
-
-    };
-  }
+//  this.hitSpaces =[];
+//  this.gotHit = function (space) {
+//    if (spaces === hitSpaces.length) {
+//   };
+//  }
 }
 
-var allShips = []; //Stores all ships in this array
+var allShips = [];                      //stores all ships & info
 
 var p1ships = [
   ["P1F8","P1G8","P1H8","P1I8","P1J8"], //aircraft
@@ -86,10 +52,8 @@ var p2ships = [
   ["P2I1","P2J1"]                       //patrol boat
 ];
 
- //looks through p1 or p2 ship array, sees the length, creates a new ship, calls addspacestoship function, go to addall function, passes ship array, iterate thru that, push each item into the array called spaces
 
  /** STORE SHIP INFO TO ALLSHIP ARRAY **/
-//(ship name, player owner of ships, number of spaces it takes up)
 function addToAllArray (playerShipArray, playerOwner) {
   var nameArray = ['Aircraft Carrier', 'Battleship', 'Destroyer', 'Submarine', 'Patrol Boat']
 
@@ -123,8 +87,7 @@ function createGrid(board){
   var letters = ['A', 'B', 'C','D','E','F','G','H','I','J'];
   var tbl = document.createElement('table');
   var tblBody = document.createElement('tbody');
-
-//make the grid rows and columns
+                                                    //make the grid rows and columns
   for(var i = 0; i < 10; i++){
     var row = document.createElement('tr');
     for(var j = 0; j < 10; j++){
@@ -151,7 +114,7 @@ createGrid('board2');
 setBoard(p2ships);
 
 
-
+/** Adding a class to cells that contain ship part **/
 function setBoard(shipArray) {
   for (i in shipArray) {
     for(j in shipArray[i]){
@@ -164,9 +127,17 @@ function setBoard(shipArray) {
 
 var hitsOne = 0;
 var hitsTwo = 0;
+var shots = 0;
 
+// function switchTurn(){
+//   if (shots % 2 === 0){
+
+// }
+
+
+/** Checks if there is a ship part in that cell **/
 function checkOccupied (id){
-  var classList = $('#'+id).attr('class').split(/\s+/);
+  var classList = $('#'+id).attr('class').split(/\s+/);   //splits the "box occupied" class
   var playerOne = id.slice(0,2);
   var red = "rgb(147, 32, 32)";
 
@@ -181,6 +152,7 @@ function checkOccupied (id){
           if(playerOne === 'P1'){
             hitsOne += 1;
             displayMessage("Congratulations! Player 1 WINS!");
+
           } else {
             hitsTwo += 1;
             displayMessage("Congratulations! Player 2 WINS!");
@@ -192,13 +164,11 @@ function checkOccupied (id){
           if(playerOne === 'P1'){
             hitsOne += 1;
             displayMessage("You hit my ship!");
-
-            //call ship sunk function for P1 here
-
+                                                        //call shipSunk function P1
           } else{
             hitsTwo += 1;
             displayMessage("You hit my ship!");
-            // call ship sunk function for P2 here
+                                                        //call shipSunk function P2
           }
       } else{
         displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
@@ -211,8 +181,7 @@ function checkOccupied (id){
 }
 
 
-
-//Rules Box//
+/** Rules Overlay Box **/
   $('#rulebutton').click(function(){
     $('#overlay').fadeIn('fast',function(){
       $('#rulebox').animate({'top':'160px'},500);
@@ -224,14 +193,36 @@ function checkOccupied (id){
     });
   });
 
+/** Click Handler **/
+function clickHandler (col) {
+  checkOccupied(col.id)
+}
 
-// //Hide or Show ships
+
+
+
+
+/***********************************/
+// UNUSED CODE FOR FUTURE ADDITIONS//
+/***********************************/
+
+/** GET PLAYER NAMES **/
+// function getPlayerName(player){
+//   var name = prompt("Please enter your player name: ");
+//   if (name){
+//     $('#'+player).html("Player: " + name);
+//   } else {
+//     getPlayerName(player);
+//   }
+// }
+//getPlayerName('name1');
+//getPlayerName('name2');
+
+/** Hide or Show ships **/
 // $('.toggle').click(function(){
 //   $('.occupied').css('background','transparent');
 //   $(this).hide();
 // });
-
-
 
 
 // // ------SHIP PLACEMENT--------//
@@ -272,13 +263,3 @@ function checkOccupied (id){
 
 
 
-function clickHandler (col) {
-  console.log(col)
-  var id = col.id;
-  id = id.slice(1)
-  var player = id.slice(0, 1)
-  var letter = id.slice(1, 2)
-  var number = id.slice(2, 3)
-  console.log(player, letter, number, col.id)
-  checkOccupied(col.id)
-}
