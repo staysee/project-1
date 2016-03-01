@@ -131,7 +131,14 @@ var shots = 0;
 
 // function switchTurn(){
 //   if (shots % 2 === 0){
-
+//     displayMessage("Player 1's turn");
+//     document.getElementById('board1').style.pointerEvents = 'none';
+//     document.getElementById('board2').style.pointerEvents = 'auto'
+//   } else {
+//     displayMessage("Player 2's turn");
+//     document.getElementById('board1').style.pointerEvents = 'auto';
+//     document.getElementById('board2').style.pointerEvents = 'none';
+//   }
 // }
 
 
