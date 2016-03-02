@@ -129,62 +129,58 @@ var hitsOne = 0;
 var hitsTwo = 0;
 var shots = 0;
 
-// function switchTurn(){
-//   if (shots % 2 === 0){
-//     displayMessage("Player 1's turn");
-//     document.getElementById('board1').style.pointerEvents = 'none';
-//     document.getElementById('board2').style.pointerEvents = 'auto'
-//   } else {
-//     displayMessage("Player 2's turn");
-//     document.getElementById('board1').style.pointerEvents = 'auto';
-//     document.getElementById('board2').style.pointerEvents = 'none';
-//   }
-// }
-
 
 /** Checks if there is a ship part in that cell **/
 function checkOccupied (id){
   var classList = $('#'+id).attr('class').split(/\s+/);   //splits the "box occupied" class
   var playerOne = id.slice(0,2);
   var red = "rgb(147, 32, 32)";
+  var idToCheck = parseInt(id.slice(1,2))-1;
 
-  if (classList[1] == 'occupied'){
-      //console.log(event);
-      if(((event.target.style.backgroundColor !== red) && (hitsOne == 16)) || ((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hitsTwo == 16))){
 
-        $('#'+id).css('background-color', red);
-        $('#'+id).css('background-image','url(images/fire.png)');
-        playSound("thunder");
+  if (shots % 2 !== idToCheck){
+    if (classList[1] == 'occupied'){
+        //console.log(event);
+        if(((event.target.style.backgroundColor !== red) && (hitsOne == 16)) || ((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hitsTwo == 16))){
 
-          if(playerOne === 'P1'){
-            hitsOne += 1;
-            displayMessage("Congratulations! Player 1 WINS!");
+          $('#'+id).css('background-color', red);
+          $('#'+id).css('background-image','url(images/fire.png)');
+          playSound("thunder");
 
-          } else {
-            hitsTwo += 1;
-            displayMessage("Congratulations! Player 2 WINS!");
-          }
-      } else if (event.target.style.backgroundColor != red){
-        $('#'+id).css('background-color', red);
-        $('#'+id).css('background-image','url(images/fire.png)');
-        playSound("thunder");
-          if(playerOne === 'P1'){
-            hitsOne += 1;
-            displayMessage("You hit my ship!");
-                                                        //call shipSunk function P1
-          } else{
-            hitsTwo += 1;
-            displayMessage("You hit my ship!");
-                                                        //call shipSunk function P2
-          }
-      } else{
-        displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
+            if(playerOne === 'P1'){
+              hitsOne += 1;
+              displayMessage("Congratulations! Player 1 WINS!");
+
+            } else {
+              hitsTwo += 1;
+              displayMessage("Congratulations! Player 2 WINS!");
+            }
+        } else if (event.target.style.backgroundColor != red){
+          $('#'+id).css('background-color', red);
+          $('#'+id).css('background-image','url(images/fire.png)');
+          playSound("thunder");
+            if(playerOne === 'P1'){
+              hitsOne += 1;
+              displayMessage("You hit my ship!");
+                                                          //call shipSunk function P1
+            } else{
+              hitsTwo += 1;
+              displayMessage("You hit my ship!");
+                                                          //call shipSunk function P2
+            }
+        } else{
+          displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
+        }
+    } else{
+          console.log('miss!');
+          $('#'+id).css('background-image','url(images/water.png)');
+          displayMessage("You missed!");
       }
-  } else{
-        console.log('miss!');
-        $('#'+id).css('background-image','url(images/water.png)');
-        displayMessage("You missed!");
-      }
+    shots += 1;
+    } else {
+      displayMessage("Not your own ships! Fire at enemy.")
+
+    }
 }
 
 
