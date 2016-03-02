@@ -58,3 +58,4 @@ function placeShip (col, player, letter, number) {
 }
 
 
+
