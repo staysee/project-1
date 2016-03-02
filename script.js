@@ -12,18 +12,6 @@ function playSound(){
   createjs.Sound.play(soundID);
 }
 
-/** RULES OVERLAY BOX **/
-  $('#rulebutton').click(function(){
-    $('#overlay').fadeIn('fast',function(){
-      $('#rulebox').animate({'top':'160px'},500);
-    });
-  });
-
-  $('#ruleclose').click(function(){
-    $('#rulebox').animate({'top':'-200px'},500,function(){
-      $('#overlay').fadeOut('fast');
-    });
-  });
 
 /** DISPLAY GAME MESSAGES **/
 function displayMessage(msg){
@@ -31,48 +19,11 @@ function displayMessage(msg){
   messageArea.html(msg);
 }
 
-/** CREATE PLAYER GRIDS **/
-function createGrid(board){
-  if (board === 'board1') {
-    var prefix = 'P1'
-  } else {
-    var prefix = 'P2'
-  }
 
-  board = (document.getElementById(board));
-  var letters = ['A', 'B', 'C','D','E','F','G','H','I','J'];
-  var tbl = document.createElement('table');
-  var tblBody = document.createElement('tbody');
-                                                    //make the grid rows and columns
-  for(var i = 0; i < 10; i++){
-    var row = document.createElement('tr');
-    for(var j = 0; j < 10; j++){
-      var id  = prefix + letters[j] + (i + 1);
-      var col = document.createElement('td');
-      col.setAttribute('id', id);                   //make new ID for each box
-      col.setAttribute('class', 'box');             //make class for each box
-      //setupMouseEvent(col, prefix, letters, i, j);
-      col.addEventListener('click', function () {
-        clickHandler(event.target);
-      });
-      row.appendChild(col);
-    }
-    tblBody.appendChild(row);
-  }
-  tbl.appendChild(tblBody);
-  board.appendChild(tbl);
+/*****Set Ships to P1 & P2 Board*****/
 
-  console.log(board);
-}
-
-createGrid('board1');
-setBoard(p1ships);
-createGrid('board2');
-setBoard(p2ships);
-
-
-/** Setting Ships to P1 & P2 Board **/
-function Ship(name, playerOwner){   //constructor function
+/* constructor function */
+function Ship(name, playerOwner){
   this.name = name;
   this.spaces = [];
   this.playerOwner = playerOwner;
@@ -124,30 +75,70 @@ addToAllArray(p2ships, 'P2')
 /*function looks through p1/p2 ship array, makes a new ship (attaches name+playerowner), calls addSpacesToShip for that ship its creating...THEN it counts the length of that ship, and adds it to that ships info. Moves to next ship. */
 
 
+/** CREATE PLAYER GRIDS **/
+function createGrid(board){
+  if (board === 'board1') {
+    var prefix = 'P1'
+  } else {
+    var prefix = 'P2'
+  }
+
+  board = (document.getElementById(board));
+  var letters = ['A', 'B', 'C','D','E','F','G','H','I','J'];
+  var tbl = document.createElement('table');
+  var tblBody = document.createElement('tbody');
+                                                    //make the grid rows and columns
+  for(var i = 0; i < 10; i++){
+    var row = document.createElement('tr');
+    for(var j = 0; j < 10; j++){
+      var id  = prefix + letters[j] + (i + 1);
+      var col = document.createElement('td');
+      col.setAttribute('id', id);                   //make new ID for each box
+      col.setAttribute('class', 'box');             //make class for each box
+      //setupMouseEvent(col, prefix, letters, i, j);
+      col.addEventListener('click', function () {
+        clickHandler(event.target);
+      });
+      row.appendChild(col);
+    }
+    tblBody.appendChild(row);
+  }
+  tbl.appendChild(tblBody);
+  board.appendChild(tbl);
+
+  console.log(board);
+}
+createGrid('board1');
+setBoard(p1ships);
+createGrid('board2');
+setBoard(p2ships);
 
 
-/** CHECK IF SHIP PART IN CELL / SWITCH TURNS **/
-
+/** Adding a class to cells that contain ship part **/
 function setBoard(shipArray) {
   for (i in shipArray) {
     for(j in shipArray[i]){
-      $('#'+shipArray[i][j]).addClass('occupied')   //add a class to cell that contains ship part
+      $('#'+shipArray[i][j]).addClass('occupied')
     }
   }
 }
+
+
 
 var hitsOne = 0;
 var hitsTwo = 0;
 var shots = 0;
 
+
+/** Checks if there is a ship part in that cell **/
 function checkOccupied (id){
   var classList = $('#'+id).attr('class').split(/\s+/);   //splits the "box occupied" class
   var playerOne = id.slice(0,2);
   var red = "rgb(147, 32, 32)";
-  var idToCheck = parseInt(id.slice(1,2))-1;    //take string id from index 1-2 subtract 1
+  var idToCheck = parseInt(id.slice(1,2))-1;
 
 
-  if (shots % 2 !== idToCheck){         //if correct player
+  if (shots % 2 !== idToCheck){
     if (classList[1] == 'occupied'){
         //console.log(event);
         if(((event.target.style.backgroundColor !== red) && (hitsOne == 16)) || ((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hitsTwo == 16))){
@@ -192,8 +183,20 @@ function checkOccupied (id){
     }
 }
 
-/** CLICK HANDLER **/
+
+/** Rules Overlay Box **/
+  $('#rulebutton').click(function(){
+    $('#overlay').fadeIn('fast',function(){
+      $('#rulebox').animate({'top':'160px'},500);
+    });
+  });
+  $('#ruleclose').click(function(){
+    $('#rulebox').animate({'top':'-200px'},500,function(){
+      $('#overlay').fadeOut('fast');
+    });
+  });
+
+/** Click Handler **/
 function clickHandler (col) {
   checkOccupied(col.id)
 }
-
