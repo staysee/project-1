@@ -73,7 +73,9 @@ function addToAllArray (playerShipArray, playerOwner) {
 addToAllArray(p1ships, 'P1')
 addToAllArray(p2ships, 'P2')
 /*function looks through p1/p2 ship array, makes a new ship (attaches name+playerowner), calls addSpacesToShip for that ship its creating...THEN it counts the length of that ship, and adds it to that ships info. Moves to next ship. */
-
+var hitsOne = 0;
+var hitsTwo = 0;
+var shots = 0;
 
 /** CREATE PLAYER GRIDS **/
 function createGrid(board){
@@ -96,8 +98,8 @@ function createGrid(board){
       col.setAttribute('id', id);                   //make new ID for each box
       col.setAttribute('class', 'box');             //make class for each box
       //setupMouseEvent(col, prefix, letters, i, j);
-      col.addEventListener('click', function () {
-        clickHandler(event.target);
+      col.addEventListener('click', function (event) {
+          clickHandler(event.target);
       });
       row.appendChild(col);
     }
@@ -125,9 +127,7 @@ function setBoard(shipArray) {
 
 
 
-var hitsOne = 0;
-var hitsTwo = 0;
-var shots = 0;
+
 
 
 /** Checks if there is a ship part in that cell **/
@@ -154,6 +154,7 @@ function checkOccupied (id){
             } else {
               hitsTwo += 1;
               displayMessage("Congratulations! Player 2 WINS!");
+
             }
         } else if (event.target.style.backgroundColor != red){
           $('#'+id).css('background-color', red);
@@ -200,69 +201,3 @@ function checkOccupied (id){
 function clickHandler (col) {
   checkOccupied(col.id)
 }
-
-
-
-
-
-/***********************************/
-// UNUSED CODE FOR FUTURE ADDITIONS//
-/***********************************/
-
-/** GET PLAYER NAMES **/
-// function getPlayerName(player){
-//   var name = prompt("Please enter your player name: ");
-//   if (name){
-//     $('#'+player).html("Player: " + name);
-//   } else {
-//     getPlayerName(player);
-//   }
-// }
-//getPlayerName('name1');
-//getPlayerName('name2');
-
-/** Hide or Show ships **/
-// $('.toggle').click(function(){
-//   $('.occupied').css('background','transparent');
-//   $(this).hide();
-// });
-
-
-// // ------SHIP PLACEMENT--------//
-// function setupMouseEvent(col, prefix, letters, rowId, columnId){
-//   col.onmouseover = function(){
-//     if (prefix !== 'P1') {return};
-//     for(var i = 1; i < 4; i++){
-//       var id  = prefix + letters[columnId] + (rowId + i + 1);
-//       if (document.getElementById(id).style.backgroundColor !== "blue") {
-//         document.getElementById(id).style.backgroundColor = "white";
-//       }
-//     }
-//     if (document.getElementById(id).style.backgroundColor !== "blue") {
-//       col.style.backgroundColor = "white";
-//     }
-//   };
-//   col.onmouseout = function(){
-//     for(var i = 1; i < 4; i++){
-//       var id  = prefix + letters[columnId] + (rowId + i + 1);
-//       if (document.getElementById(id).style.backgroundColor !== "blue") {
-//         document.getElementById(id).style.backgroundColor = "transparent";
-//       }
-//     }
-//     if (document.getElementById(id).style.backgroundColor !== "blue") {
-//       col.style.backgroundColor = "transparent";
-//     }
-//   };
-// }
-
-// function placeShip (col, player, letter, number) {
-//   number = Number(number)
-//   for(var i = 1; i < 4; i++){
-//       var id = "P" + player + letter + (number + i);
-//       document.getElementById(id).style.backgroundColor = "blue";
-//     }
-//     col.style.backgroundColor = "blue";
-// }
-
-
-
