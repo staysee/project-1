@@ -21,6 +21,33 @@ $('.toggle').click(function(){
 });
 
 
+ /** STORE SHIP INFO TO ALLSHIP ARRAY **/
+var allShips = [];                      //stores all ships & info
+
+function addToAllArray (playerShipArray, playerOwner) {
+  var nameArray = ['Aircraft Carrier', 'Battleship', 'Destroyer', 'Submarine', 'Patrol Boat']
+
+  function addSpacesToShip(spacesArray){
+    for (var i = 0; i < spacesArray.length; i++) {
+      ship.spaces.push(spacesArray[i])
+    }
+  }
+
+  for (var i = 0; i < playerShipArray.length; i++) {
+    var ship = new Ship(nameArray[i], playerOwner)
+    addSpacesToShip(playerShipArray[i])
+    allShips.push(ship)
+  };
+}
+
+addToAllArray(p1ships, 'P1')
+addToAllArray(p2ships, 'P2')
+/*function looks through p1/p2 ship array, makes a new ship (attaches name+playerowner), calls addSpacesToShip for that ship its creating...THEN it counts the length of that ship, and adds it to that ships info. Moves to next ship. */
+
+
+
+
+
 // // ------SHIP PLACEMENT--------//
 function setupMouseEvent(col, prefix, letters, rowId, columnId){
   col.onmouseover = function(){

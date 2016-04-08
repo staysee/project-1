@@ -34,7 +34,6 @@ function Ship(name, playerOwner){
 //  }
 }
 
-var allShips = [];                      //stores all ships & info
 
 var p1ships = [
   ["P1F8","P1G8","P1H8","P1I8","P1J8"], //aircraft
@@ -53,26 +52,6 @@ var p2ships = [
 ];
 
 
- /** STORE SHIP INFO TO ALLSHIP ARRAY **/
-function addToAllArray (playerShipArray, playerOwner) {
-  var nameArray = ['Aircraft Carrier', 'Battleship', 'Destroyer', 'Submarine', 'Patrol Boat']
-
-  function addSpacesToShip(spacesArray){
-    for (var i = 0; i < spacesArray.length; i++) {
-      ship.spaces.push(spacesArray[i])
-    }
-  }
-
-  for (var i = 0; i < playerShipArray.length; i++) {
-    var ship = new Ship(nameArray[i], playerOwner)
-    addSpacesToShip(playerShipArray[i])
-    allShips.push(ship)
-  };
-}
-
-addToAllArray(p1ships, 'P1')
-addToAllArray(p2ships, 'P2')
-/*function looks through p1/p2 ship array, makes a new ship (attaches name+playerowner), calls addSpacesToShip for that ship its creating...THEN it counts the length of that ship, and adds it to that ships info. Moves to next ship. */
 
 
 /** CREATE PLAYER GRIDS **/
