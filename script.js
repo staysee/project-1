@@ -22,20 +22,6 @@ function displayMessage(msg){
 
 /*****Set Ships to P1 & P2 Board*****/
 
-/* constructor function */
-function Ship(name, playerOwner){
-  this.name = name;
-  this.spaces = [];
-  this.playerOwner = playerOwner;
-//  this.hitSpaces =[];
-//  this.gotHit = function (space) {
-//    if (spaces === hitSpaces.length) {
-//   };
-//  }
-}
-
-var allShips = [];                      //stores all ships & info
-
 var p1ships = [
   ["P1F8","P1G8","P1H8","P1I8","P1J8"], //aircraft
   ["P1A1","P1A2","P1A3","P1A4"],        //battleship
@@ -52,27 +38,6 @@ var p2ships = [
   ["P2I1","P2J1"]                       //patrol boat
 ];
 
-
- /** STORE SHIP INFO TO ALLSHIP ARRAY **/
-function addToAllArray (playerShipArray, playerOwner) {
-  var nameArray = ['Aircraft Carrier', 'Battleship', 'Destroyer', 'Submarine', 'Patrol Boat']
-
-  function addSpacesToShip(spacesArray){
-    for (var i = 0; i < spacesArray.length; i++) {
-      ship.spaces.push(spacesArray[i])
-    }
-  }
-
-  for (var i = 0; i < playerShipArray.length; i++) {
-    var ship = new Ship(nameArray[i], playerOwner)
-    addSpacesToShip(playerShipArray[i])
-    allShips.push(ship)
-  };
-}
-
-addToAllArray(p1ships, 'P1')
-addToAllArray(p2ships, 'P2')
-/*function looks through p1/p2 ship array, makes a new ship (attaches name+playerowner), calls addSpacesToShip for that ship its creating...THEN it counts the length of that ship, and adds it to that ships info. Moves to next ship. */
 
 
 /** CREATE PLAYER GRIDS **/
@@ -140,6 +105,54 @@ function checkOccupied (id){
   var classList = $('#'+id).attr('class').split(/\s+/);   //splits the "box occupied" class
   var playerOne = id.slice(0,2);
   var red = "rgb(147, 32, 32)";
+<<<<<<< Updated upstream
+=======
+  var idToCheck = parseInt(id.slice(1,2))-1;
+
+
+  if (shots % 2 !== idToCheck){
+    if (classList[1] == 'occupied'){
+        //console.log(event);
+        if(((event.target.style.backgroundColor !== red) && (hitsOne == 1)) || ((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hitsTwo == 1))){
+
+          $('#'+id).css('background-color', red);
+          $('#'+id).css('background-image','url(images/fire.png)');
+          playSound("thunder");
+
+            if(playerOne === 'P1'){
+              hitsOne += 1;
+              displayMessage("Congratulations! Player 2 WINS!");
+
+            } else {
+              hitsTwo += 1;
+              displayMessage("Congratulations! Player 1 WINS!");
+
+            }
+        } else if (event.target.style.backgroundColor != red){
+          $('#'+id).css('background-color', red);
+          $('#'+id).css('background-image','url(images/fire.png)');
+          playSound("thunder");
+            if(playerOne === 'P1'){
+              hitsOne += 1;
+              displayMessage("You hit my ship!");
+                                                          //call shipSunk function P1
+            } else{
+              hitsTwo += 1;
+              displayMessage("You hit my ship!");
+                                                          //call shipSunk function P2
+            }
+        } else{
+          displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
+        }
+    } else{
+          console.log('miss!');
+          $('#'+id).css('background-image','url(images/water.png)');
+          displayMessage("You missed!");
+      }
+    shots += 1;
+    } else {
+      displayMessage("Not your own ships! Fire at enemy.")
+>>>>>>> Stashed changes
 
   if (classList[1] == 'occupied'){
       //console.log(event);
