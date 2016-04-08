@@ -43,9 +43,9 @@ var p2ships = [
 /** CREATE PLAYER GRIDS **/
 function createGrid(board){
   if (board === 'board1') {
-    var prefix = 'P1'
+    var prefix = 'P1';
   } else {
-    var prefix = 'P2'
+    var prefix = 'P2';
   }
 
   board = (document.getElementById(board));
@@ -83,7 +83,7 @@ setBoard(p2ships);
 function setBoard(shipArray) {
   for (i in shipArray) {
     for(j in shipArray[i]){
-      $('#'+shipArray[i][j]).addClass('occupied')
+      $('#'+shipArray[i][j]).addClass('occupied');
     }
   }
 }
@@ -105,10 +105,7 @@ function checkOccupied (id){
   var classList = $('#'+id).attr('class').split(/\s+/);   //splits the "box occupied" class
   var playerOne = id.slice(0,2);
   var red = "rgb(147, 32, 32)";
-<<<<<<< Updated upstream
-=======
   var idToCheck = parseInt(id.slice(1,2))-1;
-
 
   if (shots % 2 !== idToCheck){
     if (classList[1] == 'occupied'){
@@ -152,45 +149,7 @@ function checkOccupied (id){
     shots += 1;
     } else {
       displayMessage("Not your own ships! Fire at enemy.")
->>>>>>> Stashed changes
-
-  if (classList[1] == 'occupied'){
-      //console.log(event);
-      if(((event.target.style.backgroundColor !== red) && (hitsOne == 16)) || ((event.target.style.backgroundColor !== "rgb(147, 32, 32)") && (hitsTwo == 16))){
-
-        $('#'+id).css('background-color', red);
-        $('#'+id).css('background-image','url(images/fire.png)');
-        playSound("thunder");
-
-          if(playerOne === 'P1'){
-            hitsOne += 1;
-            displayMessage("Congratulations! Player 1 WINS!");
-
-          } else {
-            hitsTwo += 1;
-            displayMessage("Congratulations! Player 2 WINS!");
-          }
-      } else if (event.target.style.backgroundColor != red){
-        $('#'+id).css('background-color', red);
-        $('#'+id).css('background-image','url(images/fire.png)');
-        playSound("thunder");
-          if(playerOne === 'P1'){
-            hitsOne += 1;
-            displayMessage("You hit my ship!");
-                                                        //call shipSunk function P1
-          } else{
-            hitsTwo += 1;
-            displayMessage("You hit my ship!");
-                                                        //call shipSunk function P2
-          }
-      } else{
-        displayMessage("You've already sent a missile to this location. Please aim somewhere else!")
-      }
-  } else{
-        console.log('miss!');
-        $('#'+id).css('background-image','url(images/water.png)');
-        displayMessage("You missed!");
-      }
+    }
 }
 
 
@@ -210,69 +169,3 @@ function checkOccupied (id){
 function clickHandler (col) {
   checkOccupied(col.id)
 }
-
-
-
-
-
-/***********************************/
-// UNUSED CODE FOR FUTURE ADDITIONS//
-/***********************************/
-
-/** GET PLAYER NAMES **/
-// function getPlayerName(player){
-//   var name = prompt("Please enter your player name: ");
-//   if (name){
-//     $('#'+player).html("Player: " + name);
-//   } else {
-//     getPlayerName(player);
-//   }
-// }
-//getPlayerName('name1');
-//getPlayerName('name2');
-
-/** Hide or Show ships **/
-// $('.toggle').click(function(){
-//   $('.occupied').css('background','transparent');
-//   $(this).hide();
-// });
-
-
-// // ------SHIP PLACEMENT--------//
-// function setupMouseEvent(col, prefix, letters, rowId, columnId){
-//   col.onmouseover = function(){
-//     if (prefix !== 'P1') {return};
-//     for(var i = 1; i < 4; i++){
-//       var id  = prefix + letters[columnId] + (rowId + i + 1);
-//       if (document.getElementById(id).style.backgroundColor !== "blue") {
-//         document.getElementById(id).style.backgroundColor = "white";
-//       }
-//     }
-//     if (document.getElementById(id).style.backgroundColor !== "blue") {
-//       col.style.backgroundColor = "white";
-//     }
-//   };
-//   col.onmouseout = function(){
-//     for(var i = 1; i < 4; i++){
-//       var id  = prefix + letters[columnId] + (rowId + i + 1);
-//       if (document.getElementById(id).style.backgroundColor !== "blue") {
-//         document.getElementById(id).style.backgroundColor = "transparent";
-//       }
-//     }
-//     if (document.getElementById(id).style.backgroundColor !== "blue") {
-//       col.style.backgroundColor = "transparent";
-//     }
-//   };
-// }
-
-// function placeShip (col, player, letter, number) {
-//   number = Number(number)
-//   for(var i = 1; i < 4; i++){
-//       var id = "P" + player + letter + (number + i);
-//       document.getElementById(id).style.backgroundColor = "blue";
-//     }
-//     col.style.backgroundColor = "blue";
-// }
-
-
-
