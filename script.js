@@ -128,11 +128,11 @@ function checkOccupied (id){
 
             if(playerOne === 'P1'){
               hitsOne += 1;
-              displayMessage("Congratulations! Player 1 WINS!");
+              displayMessage("Congratulations! Player 2 WINS!");
 
             } else {
               hitsTwo += 1;
-              displayMessage("Congratulations! Player 2 WINS!");
+              displayMessage("Congratulations! Player 1 WINS!");
             }
         } else if (event.target.style.backgroundColor != red){
           $('#'+id).css('background-color', red);
